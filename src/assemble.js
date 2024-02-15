@@ -3,6 +3,7 @@ const {
   isJungSung,
   isConsonant,
   isOnlyChosung,
+  isHangeul,
 } = require("./utils");
 const {
   HANGEUL_OFFSET,
@@ -35,13 +36,24 @@ const assembleSingleLetter = ([cho, jung = null, jong = null]) => {
 
 const assemble = (hangeulList) => {
   const text = [];
-  const letter = [];
+  let letter = [];
   let nextState = ASSEMBLE_STATE.START;
 
   for (index = 0; index < hangeulList.length; index++) {
     let char = hangeulList[index];
-    letter.push(char);
     let state = nextState;
+
+    if (char === " ") {
+      text.push(letter);
+      text.push([" "]);
+      letter = [];
+      nextState = ASSEMBLE_STATE.START;
+      continue;
+    } else if (!isHangeul(char)) {
+      continue;
+    }
+
+    letter.push(char);
 
     switch (state) {
       case ASSEMBLE_STATE.START:

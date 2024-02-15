@@ -6,9 +6,11 @@ const {
   JONGSUNG,
   CHOSUNG,
 } = require("./constants");
+const { isHangeulSyllables } = require("./utils");
 
 const disassembleSingleLetter = (letter) => {
-  if (letter === " ") return [];
+  if (letter === " ") return [" "];
+  else if (!isHangeulSyllables(letter)) return [letter];
 
   const result = [];
   const code = letter.charCodeAt(0) - HANGEUL_OFFSET;
