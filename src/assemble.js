@@ -1,9 +1,9 @@
 const {
   isOnlyJongSong,
-  isConsonant,
+  isJaeum,
   isOnlyChosung,
   isHangeul,
-  isVowel,
+  isMoeum,
 } = require("./utils");
 const {
   HANGEUL_OFFSET,
@@ -56,7 +56,7 @@ const getTextFromHanguelList = (hangeulList) => {
 
     switch (state) {
       case ASSEMBLE_STATE.START:
-        if (isOnlyJongSong(char) || isVowel(char)) {
+        if (isOnlyJongSong(char) || isMoeum(char)) {
           text.push([letter.shift()]);
         } else {
           nextState = ASSEMBLE_STATE.HAS_CHOSUNG;
@@ -67,7 +67,7 @@ const getTextFromHanguelList = (hangeulList) => {
         if (isOnlyJongSong(char)) {
           text.push([letter.shift(), letter.shift()]);
           nextState = ASSEMBLE_STATE.START;
-        } else if (isConsonant(char)) {
+        } else if (isJaeum(char)) {
           text.push([letter.shift()]);
         } else {
           nextState = ASSEMBLE_STATE.HAS_JUNGSUNG;
@@ -81,7 +81,7 @@ const getTextFromHanguelList = (hangeulList) => {
         } else if (isOnlyJongSong(char)) {
           text.push([letter.shift(), letter.shift(), letter.shift()]);
           nextState = ASSEMBLE_STATE.START;
-        } else if (isVowel(char)) {
+        } else if (isMoeum(char)) {
           text.push([letter.shift(), letter.shift()]);
           text.push([letter.shift()]);
           nextState = ASSEMBLE_STATE.START;
@@ -91,7 +91,7 @@ const getTextFromHanguelList = (hangeulList) => {
         break;
 
       case ASSEMBLE_STATE.HAS_CHOSUNG_OR_JONGSUNG:
-        if (isVowel(char)) {
+        if (isMoeum(char)) {
           text.push([letter.shift(), letter.shift()]);
           nextState = ASSEMBLE_STATE.HAS_JUNGSUNG;
         } else if (isOnlyJongSong(char)) {

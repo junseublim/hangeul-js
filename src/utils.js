@@ -17,13 +17,13 @@ const isOnlyChosung = (char) => ONLY_CHOSUNG.includes(char);
 const isOnlyJongSong = (char) => ONLY_JONGSUNG.includes(char);
 
 // 자음인지 여부
-const isConsonant = (cahr) => isChoSung(cahr) || isOnlyJongSong(cahr);
+const isJaeum = (cahr) => isChoSung(cahr) || isOnlyJongSong(cahr);
 
 // 모음인지 여부
-const isVowel = (char) => JUNGSUNG.includes(char);
+const isMoeum = (char) => JUNGSUNG.includes(char);
 
 // 한글 자음, 모음인지 여부
-const isHangeulJamo = (char) => isConsonant(char) || isVowel(char);
+const isHangeulJamo = (char) => isJaeum(char) || isMoeum(char);
 
 // 한글 음절인지 여부
 const isHangeulSyllables = (char) => {
@@ -31,16 +31,18 @@ const isHangeulSyllables = (char) => {
   return code >= 0xac00 && code <= 0xd7a3;
 };
 
-const hasJongSung = (char) =>
-  (char.charCodeAt(0) - HANGEUL_OFFSET) % NUMBER_OF_JONGSUNG !== 0;
-
 // 한글인지 여부
 const isHangeul = (char) => isHangeulJamo(char) || isHangeulSyllables(char);
 
+// 종성이 있는지 여부
+const hasJongSung = (char) =>
+  isHangeulSyllables(char) &&
+  (char.charCodeAt(0) - HANGEUL_OFFSET) % NUMBER_OF_JONGSUNG !== 0;
+
 module.exports = {
   isOnlyJongSong,
-  isVowel,
-  isConsonant,
+  isMoeum,
+  isJaeum,
   isOnlyChosung,
   isHangeulJamo,
   isHangeulSyllables,

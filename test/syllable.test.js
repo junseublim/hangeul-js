@@ -12,6 +12,8 @@ test("getChoSung", () => {
   expect(getChoSung("습")).toEqual("ㅅ");
   expect(getChoSung("니")).toEqual("ㄴ");
   expect(getChoSung("다")).toEqual("ㄷ");
+
+  expect(() => getChoSung("a")).toThrow();
 });
 
 test("getJungSung", () => {
@@ -26,6 +28,8 @@ test("getJungSung", () => {
   expect(getJungSung("습")).toEqual("ㅡ");
   expect(getJungSung("니")).toEqual("ㅣ");
   expect(getJungSung("다")).toEqual("ㅏ");
+
+  expect(() => getChoSung("a")).toThrow();
 });
 
 test("getJongSung", () => {
@@ -40,4 +44,6 @@ test("getJongSung", () => {
   expect(getJongSung("습")).toEqual("ㅂ");
   expect(getJongSung("니")).toEqual("");
   expect(getJongSung("다")).toEqual("");
+
+  expect(() => getChoSung("a")).toThrow();
 });

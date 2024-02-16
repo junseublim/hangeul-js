@@ -9,19 +9,21 @@ const {
   HANGEUL_OFFSET,
 } = require("./constants");
 
-const getChoSung = (letter) => {
+const throwErrorOnNotHangeul = (letter) => {
   if (!isHangeulSyllables(letter)) {
-    return "";
+    throw new Error("한글 음절만 입력 가능합니다.");
   }
+};
+
+const getChoSung = (letter) => {
+  throwErrorOnNotHangeul(letter);
 
   const code = letter.charCodeAt(0) - HANGEUL_OFFSET;
   return CHOSUNG[Math.floor(code / CHOSUNG_OFFSET)];
 };
 
 const getJungSung = (letter) => {
-  if (!isHangeulSyllables(letter)) {
-    return "";
-  }
+  throwErrorOnNotHangeul(letter);
 
   const chosung = getChoSung(letter);
   const chosungIndex = CHOSUNG.indexOf(chosung);
@@ -31,9 +33,7 @@ const getJungSung = (letter) => {
 };
 
 const getJongSung = (letter) => {
-  if (!isHangeulSyllables(letter)) {
-    return "";
-  }
+  throwErrorOnNotHangeul(letter);
 
   if (!hasJongSung(letter)) {
     return "";
