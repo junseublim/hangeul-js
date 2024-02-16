@@ -9,10 +9,16 @@ const {
 const { isHangeulSyllables } = require("./utils");
 
 const disassembleSingleLetter = (letter) => {
-  if (letter === " ") return [" "];
-  else if (!isHangeulSyllables(letter)) return [letter];
+  if (letter === " ") {
+    return [" "];
+  }
+
+  if (!isHangeulSyllables(letter)) {
+    return [letter];
+  }
 
   const result = [];
+
   const code = letter.charCodeAt(0) - HANGEUL_OFFSET;
   result.push(CHOSUNG[Math.floor(code / CHOSUNG_OFFSET)]);
   result.push(JUNGSUNG[Math.floor((code % CHOSUNG_OFFSET) / JUNGSUNG_OFFSET)]);

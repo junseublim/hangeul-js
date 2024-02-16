@@ -1,9 +1,9 @@
 const {
   isOnlyJongSong,
-  isJungSung,
   isConsonant,
   isOnlyChosung,
   isHangeul,
+  isVowel,
 } = require("./utils");
 const {
   HANGEUL_OFFSET,
@@ -15,26 +15,25 @@ const {
   ASSEMBLE_STATE,
 } = require("./constants");
 
-const assembleSingleLetter = ([cho, jung = null, jong = null]) => {
-  if (cho && !jung && !jong) {
-    return cho;
-  } else if (!jong) {
-    return String.fromCharCode(
-      HANGEUL_OFFSET +
-        CHOSUNG.indexOf(cho) * CHOSUNG_OFFSET +
-        JUNGSUNG.indexOf(jung) * JUNGSUNG_OFFSET
-    );
-  } else {
-    return String.fromCharCode(
-      HANGEUL_OFFSET +
-        CHOSUNG.indexOf(cho) * CHOSUNG_OFFSET +
-        JUNGSUNG.indexOf(jung) * JUNGSUNG_OFFSET +
-        (JONGSUNG.indexOf(jong) + 1)
-    );
+const assembleSingleLetter = (letter) => {
+  if (letter.length === 1) {
+    return letter[0];
   }
+
+  const [cho, jung, jong] = letter;
+  let charCode = HANGEUL_OFFSET;
+
+  charCode += CHOSUNG.indexOf(cho) * CHOSUNG_OFFSET;
+  charCode += JUNGSUNG.indexOf(jung) * JUNGSUNG_OFFSET;
+
+  if (jong) {
+    charCode += JONGSUNG.indexOf(jong) + 1;
+  }
+
+  return String.fromCharCode(charCode);
 };
 
-const assemble = (hangeulList) => {
+const getTextFromHanguelList = (hangeulList) => {
   const text = [];
   let letter = [];
   let nextState = ASSEMBLE_STATE.START;
@@ -57,7 +56,7 @@ const assemble = (hangeulList) => {
 
     switch (state) {
       case ASSEMBLE_STATE.START:
-        if (isOnlyJongSong(char) || isJungSung(char)) {
+        if (isOnlyJongSong(char) || isVowel(char)) {
           text.push([letter.shift()]);
         } else {
           nextState = ASSEMBLE_STATE.HAS_CHOSUNG;
@@ -82,7 +81,7 @@ const assemble = (hangeulList) => {
         } else if (isOnlyJongSong(char)) {
           text.push([letter.shift(), letter.shift(), letter.shift()]);
           nextState = ASSEMBLE_STATE.START;
-        } else if (isJungSung(char)) {
+        } else if (isVowel(char)) {
           text.push([letter.shift(), letter.shift()]);
           text.push([letter.shift()]);
           nextState = ASSEMBLE_STATE.START;
@@ -92,7 +91,7 @@ const assemble = (hangeulList) => {
         break;
 
       case ASSEMBLE_STATE.HAS_CHOSUNG_OR_JONGSUNG:
-        if (isJungSung(char)) {
+        if (isVowel(char)) {
           text.push([letter.shift(), letter.shift()]);
           nextState = ASSEMBLE_STATE.HAS_JUNGSUNG;
         } else if (isOnlyJongSong(char)) {
@@ -108,6 +107,12 @@ const assemble = (hangeulList) => {
   if (letter.length) {
     text.push(letter);
   }
+
+  return text;
+};
+
+const assemble = (hangeulList) => {
+  const text = getTextFromHanguelList(hangeulList);
   return text.map((letter) => assembleSingleLetter(letter)).join("");
 };
 
