@@ -6,14 +6,14 @@ const {
   JONGSUNG,
   CHOSUNG,
 } = require("./constants");
-const { isHangeulSyllables } = require("./utils");
+const { isHangeulSyllable } = require("./utils");
 
 const disassembleSingleLetter = (letter: string) => {
   if (letter === " ") {
     return [" "];
   }
 
-  if (!isHangeulSyllables(letter)) {
+  if (!isHangeulSyllable(letter)) {
     return [letter];
   }
 

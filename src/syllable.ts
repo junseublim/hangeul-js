@@ -1,4 +1,4 @@
-import { isHangeulSyllables, hasJongSung } from "./utils";
+import { isHangeulSyllable, hasJongSung } from "./utils";
 import {
   CHOSUNG,
   CHOSUNG_OFFSET,
@@ -10,7 +10,7 @@ import {
 } from "./constants";
 
 const throwErrorOnNotHangeul = (letter: string) => {
-  if (!isHangeulSyllables(letter)) {
+  if (!isHangeulSyllable(letter)) {
     throw new Error("한글 음절만 입력 가능합니다.");
   }
 };
@@ -25,10 +25,10 @@ export const getChoSung = (letter: string) => {
 export const getJungSung = (letter: string) => {
   throwErrorOnNotHangeul(letter);
 
-  const chosung = getChoSung(letter);
-  const chosungIndex = CHOSUNG.indexOf(chosung);
+  const choSung = getChoSung(letter);
+  const choSungIndex = CHOSUNG.indexOf(choSung);
   const code =
-    letter.charCodeAt(0) - HANGEUL_OFFSET - chosungIndex * CHOSUNG_OFFSET;
+    letter.charCodeAt(0) - HANGEUL_OFFSET - choSungIndex * CHOSUNG_OFFSET;
   return JUNGSUNG[Math.floor(code / JUNGSUNG_OFFSET)];
 };
 

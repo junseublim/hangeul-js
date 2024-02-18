@@ -1,7 +1,7 @@
 import {
   isOnlyJongSong,
   isJaeum,
-  isOnlyChosung,
+  isOnlyChoSung,
   isHangeul,
   isMoeum,
 } from "./utils";
@@ -75,7 +75,7 @@ const getTextFromHangeulList = (hangeulList: string[]) => {
         break;
 
       case ASSEMBLE_STATE.HAS_JUNGSUNG:
-        if (isOnlyChosung(char)) {
+        if (isOnlyChoSung(char)) {
           text.push([letter.shift(), letter.shift()]);
           nextState = ASSEMBLE_STATE.HAS_CHOSUNG;
         } else if (isOnlyJongSong(char)) {
