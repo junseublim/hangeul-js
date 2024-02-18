@@ -32,11 +32,11 @@ import { isHangeul } from "hangeul-js";
 - isHangeulSyllable
 - isHangeul
 - isValidChosung
-- isValidJongSung
-- hasJongSung
-- getChoSung
-- getJungSung
-- getJongSung
+- isValidJongsung
+- hasJongsung
+- getChosung
+- getJungsung
+- getJongsung
 - assemble
 - disassemble
 
@@ -95,7 +95,7 @@ isHangeulJamo("."); // false
 ### isHangeul
 
 - 문자가 한글인지 여부를 반환합니다.
-- Returns whether a given string is Korean or not.
+- Returns whether a given character is Korean or not.
 
 ```js
 isHangeul("김"); // true
@@ -105,64 +105,71 @@ isHangeul("a"); // false
 isHangeul("."); // false
 ```
 
-### isValidChoSung
+### isValidChosung
 
 - 문자가 유효한 초성 자음인지 여부를 반환합니다.
+- Returns whether a given character is a valid Chosung or not.
 
 ```js
-isValidChoSung("ㄱ"); // true
-isValidChoSung("ㅉ"); // true
-isValidChoSung("ㄵ"); // false
+isValidChosung("ㄱ"); // true
+isValidChosung("ㅉ"); // true
+isValidChosung("ㄵ"); // false
 ```
 
-### isValidJongSung
+### isValidJongsung
 
 - 문자가 유효한 종성 자음인지 여부를 반환합니다.
+- Returns whether a given character is a valid jongsung or not.
 
 ```js
-isValidJongSung("ㄱ"); // true
-isValidJongSung("ㅉ"); // false
-isValidJongSung("ㄵ"); // true
+isValidJongsung("ㄱ"); // true
+isValidJongsung("ㅉ"); // false
+isValidJongsung("ㄵ"); // true
 ```
 
-### hasJongSung
+### hasJongsung
 
 - 문자가 종성이 있는 한글음절인지 여부를 반환합니다.
-- Returns whether a given string is a Korean syllable with a trailiing consonant.
+- Returns whether a given character is a Korean syllable with a trailiing consonant.
 
 ```js
-hasJongSung("김"); // true
-hasJongSung("기"); // false
+hasJongsung("김"); // true
+hasJongsung("기"); // false
 ```
 
-### getChoSung
+### getChosung
 
 - 음절의 초성을 반환합니다.
+- Returns the Chosung of a given korean Syllable.
 
 ```js
-getChoSung("김"); // "ㄱ"
+getChosung("김"); // "ㄱ"
 ```
 
-### getJungSung
+### getJungsung
 
 - 음절의 중성을 반환합니다.
+- Returns the jungsung of a given korean Syllable.
 
 ```js
-getJungSung("김"); // "ㅣ"
+getJungsung("김"); // "ㅣ"
 ```
 
-### getJongSung
+### getJongsung
 
 - 음절의 종성을 반환합니다.
 - 종성이 없는 경우 빈 문자열을 반환합니다.
+- Returns the jongsung of a given korean Syllable.
+- Returns an empty string when it has no jongsung.
 
 ```js
-getJongSung("김"); // "ㅁ"
+getJongsung("김"); // "ㅁ"
 ```
 
 ### assemble
 
 - 한글 자음과 모음의 배열을 받아 한글 음절들로 조합합니다.
+- Assembles given array of korean alphabets into syllables.
 
 ```js
 assemble(["ㄱ", "ㅣ", "ㅁ"]); // "김"
@@ -171,6 +178,7 @@ assemble(["ㄱ", "ㅣ", "ㅁ"]); // "김"
 ### disassemble
 
 - 문자열을 받아 한글 음절의 배열로 분리합니다.
+- Disassembles given string of korean syllables into an aray of korean alphabets.
 
 ```js
 disassemble("김"); // ["ㄱ", "ㅣ", "ㅁ"]

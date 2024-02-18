@@ -1,12 +1,12 @@
 export { assemble } from "./assemble";
 export { disassemble } from "./disassemble";
-export { getChoSung, getJongSung, getJungSung } from "./syllable";
+export { getChosung, getJongsung, getJungsung } from "./syllable";
 export {
   isHangeul,
   isHangeulJamo,
   isHangeulSyllable,
   isJaeum,
   isMoeum,
-  isValidChoSung,
-  isValidJongSung,
+  isValidChosung,
+  isValidJongsung,
 } from "./utils";

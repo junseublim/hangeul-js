@@ -1,5 +1,5 @@
 const {
-  hasJongSung,
+  hasJongsung,
   isHangeul,
   isJaeum,
   isMoeum,
@@ -7,12 +7,12 @@ const {
   isHangeulSyllable,
 } = require("../src/utils");
 
-test("hasJongSung", () => {
-  expect(hasJongSung("안")).toEqual(true);
-  expect(hasJongSung("녕")).toEqual(true);
-  expect(hasJongSung("하")).toEqual(false);
-  expect(hasJongSung("세")).toEqual(false);
-  expect(hasJongSung("요")).toEqual(false);
+test("hasJongsung", () => {
+  expect(hasJongsung("안")).toEqual(true);
+  expect(hasJongsung("녕")).toEqual(true);
+  expect(hasJongsung("하")).toEqual(false);
+  expect(hasJongsung("세")).toEqual(false);
+  expect(hasJongsung("요")).toEqual(false);
 });
 
 test("isJaeum", () => {

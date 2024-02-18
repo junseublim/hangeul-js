@@ -10,19 +10,19 @@ import {
 import { wrapSingleCharValidator } from "./validator";
 
 // 유효한 초성인지 여부
-const isValidChoSung = (char: string) => CHOSUNG.includes(char);
+const isValidChosung = (char: string) => CHOSUNG.includes(char);
 
 // 유효한 종성인지 여부
-const isValidJongSung = (char: string) => JONGSUNG.includes(char);
+const isValidJongsung = (char: string) => JONGSUNG.includes(char);
 
 // 초성만 가능한 자음인지 여부
-const isOnlyChoSung = (char: string) => ONLY_CHOSUNG.includes(char);
+const isOnlyChosung = (char: string) => ONLY_CHOSUNG.includes(char);
 
 // 종성만 가능한 자음인지 여부
 const isOnlyJongSong = (char: string) => ONLY_JONGSUNG.includes(char);
 
 // 자음인지 여부
-const isJaeum = (char: string) => isValidChoSung(char) || isOnlyJongSong(char);
+const isJaeum = (char: string) => isValidChosung(char) || isOnlyJongSong(char);
 
 // 모음인지 여부
 const isMoeum = (char: string) => JUNGSUNG.includes(char);
@@ -41,28 +41,28 @@ const isHangeul = (char: string) =>
   isHangeulJamo(char) || isHangeulSyllable(char);
 
 // 종성이 있는지 여부
-const hasJongSung = (char: string) =>
+const hasJongsung = (char: string) =>
   isHangeulSyllable(char) &&
   (char.charCodeAt(0) - HANGEUL_OFFSET) % NUMBER_OF_JONGSUNG !== 0;
 
-const wrappedIsValidChoSung = wrapSingleCharValidator(isValidChoSung);
+const wrappedIsValidChosung = wrapSingleCharValidator(isValidChosung);
 const wrappedIsJaeum = wrapSingleCharValidator(isJaeum);
 const wrappedIsMoeum = wrapSingleCharValidator(isMoeum);
 const wrappedIsHangeul = wrapSingleCharValidator(isHangeul);
 const wrappedIsHangeulJamo = wrapSingleCharValidator(isHangeulJamo);
 const wrappedIsHangeulSyllable = wrapSingleCharValidator(isHangeulSyllable);
-const wrappedHasJongSung = wrapSingleCharValidator(hasJongSung);
-const wrappedIsValidJongSung = wrapSingleCharValidator(isValidJongSung);
+const wrappedHasJongsung = wrapSingleCharValidator(hasJongsung);
+const wrappedIsValidJongsung = wrapSingleCharValidator(isValidJongsung);
 
 export {
-  wrappedIsValidChoSung as isValidChoSung,
-  wrappedIsValidJongSung as isValidJongSung,
+  wrappedIsValidChosung as isValidChosung,
+  wrappedIsValidJongsung as isValidJongsung,
   wrappedIsJaeum as isJaeum,
   wrappedIsMoeum as isMoeum,
   wrappedIsHangeul as isHangeul,
   wrappedIsHangeulJamo as isHangeulJamo,
   wrappedIsHangeulSyllable as isHangeulSyllable,
-  wrappedHasJongSung as hasJongSung,
-  isOnlyChoSung,
+  wrappedHasJongsung as hasJongsung,
+  isOnlyChosung,
   isOnlyJongSong,
 };

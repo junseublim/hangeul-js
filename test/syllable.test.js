@@ -1,49 +1,49 @@
-const { getChoSung, getJungSung, getJongSung } = require("../src/syllable");
+const { getChosung, getJungsung, getJongsung } = require("../src/syllable");
 
-test("getChoSung", () => {
-  expect(getChoSung("안")).toEqual("ㅇ");
-  expect(getChoSung("녕")).toEqual("ㄴ");
-  expect(getChoSung("하")).toEqual("ㅎ");
-  expect(getChoSung("세")).toEqual("ㅅ");
-  expect(getChoSung("요")).toEqual("ㅇ");
+test("getChosung", () => {
+  expect(getChosung("안")).toEqual("ㅇ");
+  expect(getChosung("녕")).toEqual("ㄴ");
+  expect(getChosung("하")).toEqual("ㅎ");
+  expect(getChosung("세")).toEqual("ㅅ");
+  expect(getChosung("요")).toEqual("ㅇ");
 
-  expect(getChoSung("반")).toEqual("ㅂ");
-  expect(getChoSung("갑")).toEqual("ㄱ");
-  expect(getChoSung("습")).toEqual("ㅅ");
-  expect(getChoSung("니")).toEqual("ㄴ");
-  expect(getChoSung("다")).toEqual("ㄷ");
+  expect(getChosung("반")).toEqual("ㅂ");
+  expect(getChosung("갑")).toEqual("ㄱ");
+  expect(getChosung("습")).toEqual("ㅅ");
+  expect(getChosung("니")).toEqual("ㄴ");
+  expect(getChosung("다")).toEqual("ㄷ");
 
-  expect(() => getChoSung("a")).toThrow();
+  expect(() => getChosung("a")).toThrow();
 });
 
-test("getJungSung", () => {
-  expect(getJungSung("안")).toEqual("ㅏ");
-  expect(getJungSung("녕")).toEqual("ㅕ");
-  expect(getJungSung("하")).toEqual("ㅏ");
-  expect(getJungSung("세")).toEqual("ㅔ");
-  expect(getJungSung("요")).toEqual("ㅛ");
+test("getJungsung", () => {
+  expect(getJungsung("안")).toEqual("ㅏ");
+  expect(getJungsung("녕")).toEqual("ㅕ");
+  expect(getJungsung("하")).toEqual("ㅏ");
+  expect(getJungsung("세")).toEqual("ㅔ");
+  expect(getJungsung("요")).toEqual("ㅛ");
 
-  expect(getJungSung("반")).toEqual("ㅏ");
-  expect(getJungSung("갑")).toEqual("ㅏ");
-  expect(getJungSung("습")).toEqual("ㅡ");
-  expect(getJungSung("니")).toEqual("ㅣ");
-  expect(getJungSung("다")).toEqual("ㅏ");
+  expect(getJungsung("반")).toEqual("ㅏ");
+  expect(getJungsung("갑")).toEqual("ㅏ");
+  expect(getJungsung("습")).toEqual("ㅡ");
+  expect(getJungsung("니")).toEqual("ㅣ");
+  expect(getJungsung("다")).toEqual("ㅏ");
 
-  expect(() => getChoSung("a")).toThrow();
+  expect(() => getChosung("a")).toThrow();
 });
 
-test("getJongSung", () => {
-  expect(getJongSung("안")).toEqual("ㄴ");
-  expect(getJongSung("녕")).toEqual("ㅇ");
-  expect(getJongSung("하")).toEqual("");
-  expect(getJongSung("세")).toEqual("");
-  expect(getJongSung("요")).toEqual("");
+test("getJongsung", () => {
+  expect(getJongsung("안")).toEqual("ㄴ");
+  expect(getJongsung("녕")).toEqual("ㅇ");
+  expect(getJongsung("하")).toEqual("");
+  expect(getJongsung("세")).toEqual("");
+  expect(getJongsung("요")).toEqual("");
 
-  expect(getJongSung("반")).toEqual("ㄴ");
-  expect(getJongSung("갑")).toEqual("ㅂ");
-  expect(getJongSung("습")).toEqual("ㅂ");
-  expect(getJongSung("니")).toEqual("");
-  expect(getJongSung("다")).toEqual("");
+  expect(getJongsung("반")).toEqual("ㄴ");
+  expect(getJongsung("갑")).toEqual("ㅂ");
+  expect(getJongsung("습")).toEqual("ㅂ");
+  expect(getJongsung("니")).toEqual("");
+  expect(getJongsung("다")).toEqual("");
 
-  expect(() => getChoSung("a")).toThrow();
+  expect(() => getChosung("a")).toThrow();
 });
