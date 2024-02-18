@@ -33,7 +33,7 @@ const assembleSingleLetter = (letter: string[]) => {
   return String.fromCharCode(charCode);
 };
 
-const getTextFromHanguelList = (hangeulList: string[]) => {
+const getTextFromHangeulList = (hangeulList: string[]) => {
   const text = [];
   let letter = [];
   let nextState = ASSEMBLE_STATE.START;
@@ -112,7 +112,7 @@ const getTextFromHanguelList = (hangeulList: string[]) => {
 };
 
 export const assemble = (hangeulList: string[]) => {
-  const text = getTextFromHanguelList(hangeulList);
+  const text = getTextFromHangeulList(hangeulList);
   return text
     .map((letter) => assembleSingleLetter(letter as string[]))
     .join("");
