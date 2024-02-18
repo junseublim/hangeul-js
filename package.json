@@ -6,6 +6,13 @@
   "scripts": {
     "test": "jest"
   },
+  "keywords": [
+    "hangeul",
+    "hangul",
+    "korean",
+    "alphabet",
+    "language"
+  ],
   "author": "Jun Seub Lim",
   "license": "ISC",
   "devDependencies": {
