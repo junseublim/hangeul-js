@@ -26,19 +26,19 @@ import { isHangeul } from "hangeul-js";
 
 ## Util Functions
 
-- isJaeum
-- isMoeum
-- isHangeulJamo
-- isHangeulSyllable
-- isHangeul
-- isValidChosung
-- isValidJongsung
-- hasJongsung
-- getChosung
-- getJungsung
-- getJongsung
-- assemble
-- disassemble
+- [isJaeum](#isjaeum)
+- [isMoeum](#ismoeum)
+- [isHangeulJamo](#ishangeuljamo)
+- [isHangeulSyllable](#ishangeulsyllable)
+- [isHangeul](#ishangeul)
+- [isValidChosung](#isvalidchosung)
+- [isValidJongsung](#isvalidjongsung)
+- [hasJongsung](#hasjongsung)
+- [getChosung](#getchosung)
+- [getJungsung](#getjungsung)
+- [getJongsung](#getjongsung)
+- [assemble](#assemble)
+- [disassemble](#disassemble)
 
 ### isJaeum
 
