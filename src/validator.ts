@@ -11,6 +11,6 @@ export const wrapValidator =
   };
 
 export const wrapSingleCharValidator = wrapValidator(
-  (letter: string) => letter.length !== 1,
+  (letter: string) => letter.length === 1,
   "한글자만 입력가능합니다."
 );
