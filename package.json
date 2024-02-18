@@ -20,6 +20,7 @@
     "language"
   ],
   "author": "Jun Seub Lim",
+  "repository": "https://github.com/junseublim/hangeul-js",
   "license": "ISC",
   "devDependencies": {
     "jest": "^29.7.0",
