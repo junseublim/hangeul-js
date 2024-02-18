@@ -1,30 +1,27 @@
-import { isHangeulSyllable, hasJongSung } from "./utils";
+import { isHangeulSyllable } from "./utils";
+import { wrapSingleCharValidator, wrapValidator } from "./validator";
 import {
   CHOSUNG,
-  CHOSUNG_OFFSET,
   JUNGSUNG,
-  JUNGSUNG_OFFSET,
-  JONGSUNG,
-  NUMBER_OF_JONGSUNG,
   HANGEUL_OFFSET,
+  NUMBER_OF_JONGSUNG,
+  JONGSUNG,
+  CHOSUNG_OFFSET,
+  JUNGSUNG_OFFSET,
 } from "./constants";
+import { hasJongSung } from "./utils";
 
-const throwErrorOnNotHangeul = (letter: string) => {
-  if (!isHangeulSyllable(letter)) {
-    throw new Error("한글 음절만 입력 가능합니다.");
-  }
-};
+const wrapHangeulSyllableValidator = wrapValidator(
+  isHangeulSyllable,
+  "한글 음절만 입력 가능합니다."
+);
 
-export const getChoSung = (letter: string) => {
-  throwErrorOnNotHangeul(letter);
-
+const getChoSung = (letter: string) => {
   const code = letter.charCodeAt(0) - HANGEUL_OFFSET;
   return CHOSUNG[Math.floor(code / CHOSUNG_OFFSET)];
 };
 
-export const getJungSung = (letter: string) => {
-  throwErrorOnNotHangeul(letter);
-
+const getJungSung = (letter: string) => {
   const choSung = getChoSung(letter);
   const choSungIndex = CHOSUNG.indexOf(choSung);
   const code =
@@ -32,13 +29,27 @@ export const getJungSung = (letter: string) => {
   return JUNGSUNG[Math.floor(code / JUNGSUNG_OFFSET)];
 };
 
-export const getJongSung = (letter: string) => {
-  throwErrorOnNotHangeul(letter);
-
+const getJongSung = (letter: string) => {
   if (!hasJongSung(letter)) {
     return "";
   }
 
   const code = letter.charCodeAt(0) - HANGEUL_OFFSET;
   return JONGSUNG[(code % NUMBER_OF_JONGSUNG) - 1];
+};
+
+const wrappedGetChoSung = wrapSingleCharValidator(
+  wrapHangeulSyllableValidator(getChoSung)
+);
+const wrappedGetJungSung = wrapSingleCharValidator(
+  wrapHangeulSyllableValidator(getJungSung)
+);
+const wrappedGetJongSung = wrapSingleCharValidator(
+  wrapHangeulSyllableValidator(getJongSung)
+);
+
+export {
+  wrappedGetChoSung as getChoSung,
+  wrappedGetJongSung as getJongSung,
+  wrappedGetJungSung as getJungSung,
 };

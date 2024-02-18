@@ -1,4 +1,4 @@
-const { getChoSung, getJongSung, getJungSung } = require("../src/syllable");
+const { getChoSung, getJungSung, getJongSung } = require("../src/syllable");
 
 test("getChoSung", () => {
   expect(getChoSung("안")).toEqual("ㅇ");

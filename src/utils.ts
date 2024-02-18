@@ -7,16 +7,7 @@ import {
   NUMBER_OF_JONGSUNG,
   JONGSUNG,
 } from "./constants";
-
-const wrapSingleCharValidator = (fn: (text: string) => boolean) => {
-  return (text: string) => {
-    if (text.length !== 1) {
-      throw new Error("한글자만 입력가능합니다.");
-    }
-
-    return fn(text);
-  };
-};
+import { wrapSingleCharValidator } from "./validator";
 
 // 유효한 초성인지 여부
 const isValidChoSung = (char: string) => CHOSUNG.includes(char);
@@ -74,5 +65,4 @@ export {
   wrappedHasJongSung as hasJongSung,
   isOnlyChoSung,
   isOnlyJongSong,
-  wrapSingleCharValidator,
 };
