@@ -5,6 +5,7 @@ import {
   ONLY_JONGSUNG,
   HANGEUL_OFFSET,
   NUMBER_OF_JONGSUNG,
+  JONGSUNG,
 } from "./constants";
 
 const wrapSingleCharValidator = (fn: (text: string) => boolean) => {
@@ -17,8 +18,11 @@ const wrapSingleCharValidator = (fn: (text: string) => boolean) => {
   };
 };
 
-// 초성인지 여부
-const isChoSung = (char: string) => CHOSUNG.includes(char);
+// 유효한 초성인지 여부
+const isValidChoSung = (char: string) => CHOSUNG.includes(char);
+
+// 유효한 종성인지 여부
+const isValidJongSung = (char: string) => JONGSUNG.includes(char);
 
 // 초성만 가능한 자음인지 여부
 const isOnlyChoSung = (char: string) => ONLY_CHOSUNG.includes(char);
@@ -27,7 +31,7 @@ const isOnlyChoSung = (char: string) => ONLY_CHOSUNG.includes(char);
 const isOnlyJongSong = (char: string) => ONLY_JONGSUNG.includes(char);
 
 // 자음인지 여부
-const isJaeum = (char: string) => isChoSung(char) || isOnlyJongSong(char);
+const isJaeum = (char: string) => isValidChoSung(char) || isOnlyJongSong(char);
 
 // 모음인지 여부
 const isMoeum = (char: string) => JUNGSUNG.includes(char);
@@ -50,16 +54,18 @@ const hasJongSung = (char: string) =>
   isHangeulSyllable(char) &&
   (char.charCodeAt(0) - HANGEUL_OFFSET) % NUMBER_OF_JONGSUNG !== 0;
 
-const wrappedIsChoSung = wrapSingleCharValidator(isChoSung);
+const wrappedIsValidChoSung = wrapSingleCharValidator(isValidChoSung);
 const wrappedIsJaeum = wrapSingleCharValidator(isJaeum);
 const wrappedIsMoeum = wrapSingleCharValidator(isMoeum);
 const wrappedIsHangeul = wrapSingleCharValidator(isHangeul);
 const wrappedIsHangeulJamo = wrapSingleCharValidator(isHangeulJamo);
 const wrappedIsHangeulSyllable = wrapSingleCharValidator(isHangeulSyllable);
 const wrappedHasJongSung = wrapSingleCharValidator(hasJongSung);
+const wrappedIsValidJongSung = wrapSingleCharValidator(isValidJongSung);
 
 export {
-  wrappedIsChoSung as isChosung,
+  wrappedIsValidChoSung as isValidChoSung,
+  wrappedIsValidJongSung as isValidJongSung,
   wrappedIsJaeum as isJaeum,
   wrappedIsMoeum as isMoeum,
   wrappedIsHangeul as isHangeul,
@@ -68,4 +74,5 @@ export {
   wrappedHasJongSung as hasJongSung,
   isOnlyChoSung,
   isOnlyJongSong,
+  wrapSingleCharValidator,
 };
