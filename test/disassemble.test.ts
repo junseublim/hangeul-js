@@ -1,4 +1,4 @@
-const { disassemble } = require("../src");
+import { disassemble } from "@/disassemble";
 
 test("안녕하세요", () => {
   expect(disassemble("안녕하세요")).toEqual([

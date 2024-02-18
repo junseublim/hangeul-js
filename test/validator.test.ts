@@ -1,4 +1,4 @@
-const { wrapSingleCharValidator } = require("../src/validator");
+import { wrapSingleCharValidator } from "@/validator";
 
 test("wrapSingleCharValidator", () => {
   const fn = () => {};

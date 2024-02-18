@@ -1,4 +1,4 @@
-const { getChosung, getJungsung, getJongsung } = require("../src/syllable");
+import { getChosung, getJungsung, getJongsung } from "@/syllable";
 
 test("getChosung", () => {
   expect(getChosung("안")).toEqual("ㅇ");

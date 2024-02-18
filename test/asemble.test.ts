@@ -1,4 +1,4 @@
-const { assemble } = require("../src");
+import { assemble } from "@/assemble";
 
 test("안녕하세요", () => {
   expect(

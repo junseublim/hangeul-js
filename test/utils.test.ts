@@ -1,11 +1,11 @@
-const {
+import {
   hasJongsung,
   isHangeul,
   isJaeum,
   isMoeum,
   isHangeulJamo,
   isHangeulSyllable,
-} = require("../src/utils");
+} from "@/utils";
 
 test("hasJongsung", () => {
   expect(hasJongsung("안")).toEqual(true);

@@ -1,12 +1,12 @@
-const {
+import {
   HANGEUL_OFFSET,
   CHOSUNG_OFFSET,
   JUNGSUNG_OFFSET,
   JUNGSUNG,
   JONGSUNG,
   CHOSUNG,
-} = require("./constants");
-const { isHangeulSyllable } = require("./utils");
+} from "./constants";
+import { isHangeulSyllable } from "./utils";
 
 const disassembleSingleLetter = (letter: string) => {
   if (letter === " ") {

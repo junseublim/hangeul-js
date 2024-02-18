@@ -17,12 +17,15 @@
     "hangul",
     "korean",
     "alphabet",
-    "language"
+    "language",
+    "한글"
   ],
   "author": "Jun Seub Lim",
   "repository": "https://github.com/junseublim/hangeul-js",
   "license": "ISC",
   "devDependencies": {
+    "@jest/globals": "^29.7.0",
+    "@types/jest": "^29.5.12",
     "jest": "^29.7.0",
     "ts-jest": "^29.1.2",
     "ts-node": "^10.9.2",
