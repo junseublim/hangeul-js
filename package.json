@@ -1,6 +1,6 @@
 {
   "name": "hangeul-js",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A JavaScript library for working with the Korean alphabet, Hangeul.",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
