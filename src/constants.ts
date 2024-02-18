@@ -1,5 +1,5 @@
 // 초성 혹은 종성 둘 다 사용될 수 있는 자음
-const CHOSUNG_OR_JONGSUNG = [
+export const CHOSUNG_OR_JONGSUNG = [
   "ㄱ",
   "ㄲ",
   "ㄴ",
@@ -19,10 +19,10 @@ const CHOSUNG_OR_JONGSUNG = [
 ];
 
 // 초성으로만 사용될 수 있는 자음
-const ONLY_CHOSUNG = ["ㄸ", "ㅃ", "ㅉ"];
+export const ONLY_CHOSUNG = ["ㄸ", "ㅃ", "ㅉ"];
 
 // 종성으로만 사용될 수 있는 자음
-const ONLY_JONGSUNG = [
+export const ONLY_JONGSUNG = [
   "ㄳ",
   "ㄵ",
   "ㄶ",
@@ -36,7 +36,7 @@ const ONLY_JONGSUNG = [
   "ㅄ",
 ];
 
-const CHOSUNG = [
+export const CHOSUNG = [
   "ㄱ",
   "ㄲ",
   "ㄴ",
@@ -58,7 +58,7 @@ const CHOSUNG = [
   "ㅎ",
 ];
 
-const JONGSUNG = [
+export const JONGSUNG = [
   "ㄱ",
   "ㄲ",
   "ㄳ",
@@ -88,7 +88,7 @@ const JONGSUNG = [
   "ㅎ",
 ];
 
-const JUNGSUNG = [
+export const JUNGSUNG = [
   "ㅏ",
   "ㅐ",
   "ㅑ",
@@ -112,29 +112,15 @@ const JUNGSUNG = [
   "ㅣ",
 ];
 
-const HANGEUL_OFFSET = 44032;
-const CHOSUNG_OFFSET = 588;
-const JUNGSUNG_OFFSET = 28;
+export const HANGEUL_OFFSET = 44032;
+export const CHOSUNG_OFFSET = 588;
+export const JUNGSUNG_OFFSET = 28;
 
-const NUMBER_OF_JONGSUNG = 28;
+export const NUMBER_OF_JONGSUNG = 28;
 
-const ASSEMBLE_STATE = {
+export const ASSEMBLE_STATE = {
   START: 0,
   HAS_CHOSUNG: 1,
   HAS_JUNGSUNG: 2,
   HAS_CHOSUNG_OR_JONGSUNG: 3,
-};
-
-module.exports = {
-  CHOSUNG,
-  CHOSUNG_OR_JONGSUNG,
-  ONLY_CHOSUNG,
-  ONLY_JONGSUNG,
-  JUNGSUNG,
-  JONGSUNG,
-  HANGEUL_OFFSET,
-  CHOSUNG_OFFSET,
-  JUNGSUNG_OFFSET,
-  ASSEMBLE_STATE,
-  NUMBER_OF_JONGSUNG,
 };

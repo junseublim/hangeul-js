@@ -1,11 +1,11 @@
-const {
+import {
   isOnlyJongSong,
   isJaeum,
   isOnlyChosung,
   isHangeul,
   isMoeum,
-} = require("./utils");
-const {
+} from "./utils";
+import {
   HANGEUL_OFFSET,
   CHOSUNG_OFFSET,
   JUNGSUNG_OFFSET,
@@ -13,9 +13,9 @@ const {
   JONGSUNG,
   CHOSUNG,
   ASSEMBLE_STATE,
-} = require("./constants");
+} from "./constants";
 
-const assembleSingleLetter = (letter) => {
+const assembleSingleLetter = (letter: string[]) => {
   if (letter.length === 1) {
     return letter[0];
   }
@@ -24,7 +24,7 @@ const assembleSingleLetter = (letter) => {
   let charCode = HANGEUL_OFFSET;
 
   charCode += CHOSUNG.indexOf(cho) * CHOSUNG_OFFSET;
-  charCode += JUNGSUNG.indexOf(jung) * JUNGSUNG_OFFSET;
+  charCode += JUNGSUNG.indexOf(jung!) * JUNGSUNG_OFFSET;
 
   if (jong) {
     charCode += JONGSUNG.indexOf(jong) + 1;
@@ -33,12 +33,12 @@ const assembleSingleLetter = (letter) => {
   return String.fromCharCode(charCode);
 };
 
-const getTextFromHanguelList = (hangeulList) => {
+const getTextFromHanguelList = (hangeulList: string[]) => {
   const text = [];
   let letter = [];
   let nextState = ASSEMBLE_STATE.START;
 
-  for (index = 0; index < hangeulList.length; index++) {
+  for (let index = 0; index < hangeulList.length; index++) {
     let char = hangeulList[index];
     let state = nextState;
 
@@ -111,9 +111,9 @@ const getTextFromHanguelList = (hangeulList) => {
   return text;
 };
 
-const assemble = (hangeulList) => {
+export const assemble = (hangeulList: string[]) => {
   const text = getTextFromHanguelList(hangeulList);
-  return text.map((letter) => assembleSingleLetter(letter)).join("");
+  return text
+    .map((letter) => assembleSingleLetter(letter as string[]))
+    .join("");
 };
-
-module.exports = { assemble };

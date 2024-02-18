@@ -8,7 +8,7 @@ const {
 } = require("./constants");
 const { isHangeulSyllables } = require("./utils");
 
-const disassembleSingleLetter = (letter) => {
+const disassembleSingleLetter = (letter: string) => {
   if (letter === " ") {
     return [" "];
   }
@@ -30,11 +30,9 @@ const disassembleSingleLetter = (letter) => {
   return result;
 };
 
-const disassemble = (text) => {
+export const disassemble = (text: string) => {
   return text
     .split("")
     .map((letter) => disassembleSingleLetter(letter))
     .flat();
 };
-
-module.exports = { disassemble };

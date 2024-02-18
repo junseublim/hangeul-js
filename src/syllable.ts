@@ -1,5 +1,5 @@
-const { isHangeulSyllables, hasJongSung } = require("./utils");
-const {
+import { isHangeulSyllables, hasJongSung } from "./utils";
+import {
   CHOSUNG,
   CHOSUNG_OFFSET,
   JUNGSUNG,
@@ -7,22 +7,22 @@ const {
   JONGSUNG,
   NUMBER_OF_JONGSUNG,
   HANGEUL_OFFSET,
-} = require("./constants");
+} from "./constants";
 
-const throwErrorOnNotHangeul = (letter) => {
+const throwErrorOnNotHangeul = (letter: string) => {
   if (!isHangeulSyllables(letter)) {
     throw new Error("한글 음절만 입력 가능합니다.");
   }
 };
 
-const getChoSung = (letter) => {
+export const getChoSung = (letter: string) => {
   throwErrorOnNotHangeul(letter);
 
   const code = letter.charCodeAt(0) - HANGEUL_OFFSET;
   return CHOSUNG[Math.floor(code / CHOSUNG_OFFSET)];
 };
 
-const getJungSung = (letter) => {
+export const getJungSung = (letter: string) => {
   throwErrorOnNotHangeul(letter);
 
   const chosung = getChoSung(letter);
@@ -32,7 +32,7 @@ const getJungSung = (letter) => {
   return JUNGSUNG[Math.floor(code / JUNGSUNG_OFFSET)];
 };
 
-const getJongSung = (letter) => {
+export const getJongSung = (letter: string) => {
   throwErrorOnNotHangeul(letter);
 
   if (!hasJongSung(letter)) {
@@ -41,10 +41,4 @@ const getJongSung = (letter) => {
 
   const code = letter.charCodeAt(0) - HANGEUL_OFFSET;
   return JONGSUNG[(code % NUMBER_OF_JONGSUNG) - 1];
-};
-
-module.exports = {
-  getChoSung,
-  getJungSung,
-  getJongSung,
 };
